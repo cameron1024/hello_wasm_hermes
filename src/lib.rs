@@ -1,5 +1,10 @@
-#[no_mangle]
-pub extern "C" fn handle(x: i32) -> i32 {
-    x * 2
-}
+wit_bindgen::generate!("hermes");
 
+struct Host;
+export_hermes!(Host);
+
+impl Hermes for Host {
+    fn process(b: Block) -> bool {
+        b.slot % 2 == 0
+    }
+}

@@ -1,0 +1,17 @@
+/// The WASM interface definition for Hermes plugins
+
+default world hermes {
+
+  record block {
+    slot: u64,
+    hash: list<u8>,
+    raw-bytes: list<u8>,
+  }
+
+  import host: interface {
+    print: func(msg: string)
+  }
+
+  export process: func(b: block) -> bool
+}
+
